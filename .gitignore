@@ -9,3 +9,19 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+.settings/
+.classpath
+.project
+bin/
+/toolchains.xml
+/logging.properties
+
+# IntelliJ #
+.idea/
+*.iml
+
+ # OS Files #
+.DS_Store

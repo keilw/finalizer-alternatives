@@ -1,0 +1,253 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>io.github.finalizeralternatives</groupId>
+	<artifactId>finalizer-alternatives</artifactId>
+	<packaging>pom</packaging>
+	<name>Finalizer Alternatives</name>
+	<description>Alternatives to the Java Finalizer</description>
+	<version>1.0.0-SNAPSHOT</version>
+	<organization>
+		<name>DWX</name>
+		<url>https://www.developer-week.de/</url>
+	</organization>
+	<licenses>
+		<license>
+			<name>Apache 2 License</name>
+			<comments>RI</comments>
+			<url>LICENSE.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<inceptionYear>2022</inceptionYear>
+	<url>https://www.developer-week.de/</url>
+	<scm>
+		<connection>scm:git:https://github.com/unitsofmeasurement/uom-parent.git</connection>
+		<developerConnection>scm:git:https://github.com/unitsofmeasurement/uom-parent.git</developerConnection>
+		<url>https://github.com/unitsofmeasurement/uom-parent.git</url>
+	</scm>
+	<properties>
+		<proj.version>${project.version}</proj.version>
+		<sourceEncoding>UTF-8</sourceEncoding>
+		<project.build.sourceEncoding>${sourceEncoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${sourceEncoding}</project.reporting.outputEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		
+		<!-- dependency versions -->
+		<slf4j.version>1.7.36</slf4j.version>
+		<!-- Test settings -->
+		<junit.jupiter.version>5.8.2</junit.jupiter.version>		
+		<junit.platform.version>1.8.2</junit.platform.version>
+		<hamcrest.version>2.2</hamcrest.version>
+		<!-- plugin versions -->
+		<maven.assembly.version>3.3.0</maven.assembly.version>
+		<maven.clean.version>3.1.0</maven.clean.version>
+		<maven.compiler.version>3.8.1</maven.compiler.version>
+		<maven.deploy.version>3.0.0-M1</maven.deploy.version>
+		<maven.enforcer.version>3.0.0-M3</maven.enforcer.version>
+		<maven.install.version>3.0.0-M1</maven.install.version>
+		<maven.jar.version>3.2.0</maven.jar.version>
+		<maven.javadoc.version>3.2.0</maven.javadoc.version>
+		<maven.pmd.version>3.14.0</maven.pmd.version>
+		<maven.processor.version>4.3</maven.processor.version>
+		<maven.release.version>3.0.0-M1</maven.release.version>
+		<maven.resources.version>3.2.0</maven.resources.version>
+		<maven.site.version>3.9.1</maven.site.version>
+		<maven.source.version>3.2.1</maven.source.version>
+		<maven.surefire.version>2.22.2</maven.surefire.version>
+		<maven.toolchains.version>3.0.0</maven.toolchains.version>
+		<maven.war.version>3.3.1</maven.war.version>		
+		<felix.plugin.version>5.1.2</felix.plugin.version>
+		<formatter.plugin.version>2.17.1</formatter.plugin.version>
+		<license.plugin.version>4.1</license.plugin.version>		
+		<jacoco.plugin.version>0.8.7</jacoco.plugin.version>
+	</properties>
+
+	<!-- Developers and Contributors -->
+	<developers>
+		<developer>
+			<id>keilw</id>
+			<name>Werner Keil</name>
+			<email>werner@catmedia.us</email>
+			<organization>CATMedia UG &amp; Co. KG</organization>
+			<organizationUrl>http://www.catmedia.us</organizationUrl>
+			<timezone>+1</timezone>
+			<roles>
+				<role>Architect</role>
+				<role>Java Developer</role>
+				<role>Founder</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<!-- Additional repositories -->
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>ossrh-snapshot</id>
+			<name>OSSRH Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
+
+	<!-- Deployment to public servers -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven.source.version}</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- License -->
+				<plugin>
+					<groupId>com.mycila</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>${license.plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<mapping>
+							<java>JAVA_STYLE</java>
+						</mapping>
+					</configuration>
+				</plugin>
+
+				<!-- Format -->
+				<plugin>
+					<groupId>net.revelc.code</groupId>
+					<artifactId>formatter-maven-plugin</artifactId>
+					<version>${formatter.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>${maven.enforcer.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven.javadoc.version}</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<configuration>
+								<failOnError>false</failOnError>
+							</configuration>
+						</execution>
+					</executions>
+					<configuration>
+						<detectLinks>true</detectLinks>
+						<!-- excludePackageNames>bar</excludePackageNames -->
+						<keywords>true</keywords>
+						<linksource>true</linksource>
+						<!-- overview>${basedir}/overview.html</overview -->
+						<source>${project.build.sourceCompilerLevel}</source>
+						<!-- stylesheetfile>${basedir}/src/site/css/measure-jdoc.css</stylesheetfile -->
+						<verbose>true</verbose>
+						<!-- only for Java SE 8+ builds, apply there if required <additionalparam>-Xdoclint:none</additionalparam> -->
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>${maven.jar.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>test-jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>${maven.war.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>${maven.assembly.version}</version>
+				</plugin>				
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>2.5</version>
+				</plugin>
+				<plugin>
+					<groupId>org.bsc.maven</groupId>
+					<artifactId>maven-processor-plugin</artifactId>
+					<version>${maven.processor.version}</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven.surefire.version}</version>
+					<configuration>
+						<useSystemClassLoader>true</useSystemClassLoader>
+						<skipTests>false</skipTests>
+						<trimStackTrace>false</trimStackTrace>
+						<forkMode>once</forkMode>
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+						<excludes>
+							<exclude>**/Abstract*.java</exclude>
+						</excludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-report-plugin</artifactId>
+					<version>${maven.surefire.version}</version>
+				</plugin>			
+			</plugins>
+		</pluginManagement>
+	</build>
+	<modules>
+		<module>finalize</module>
+		<module>cleaner</module>
+		<module>phantom</module>
+	</modules>
+</project>
