@@ -4,7 +4,12 @@ import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 
-public class PersonRefBeispiel {
+/**
+ * Dies ist ein Beispiel für die Nutzung von {@link PhantomReference} mit explizigem GC Aufruf
+ * @author Werner
+ *
+ */
+public class PhantomReferenceGCAufrufBeispiel {
 
     public static void main(String[] args) {
         try {
@@ -13,7 +18,7 @@ public class PersonRefBeispiel {
             @SuppressWarnings("unused")
 			PhantomReference<Person> phantomRefPerson = new PhantomReference<>(person, queue);
 
-            // at this point object have one strong and one phantom reference, invoke Garbage collector
+            // Aufruf des GC als wir noch Starke und Phantom Referenzeen haben
             System.gc();
             
             System.out.println("GC aufgerufen, als noch starke Referenz vorhanden");
@@ -25,10 +30,10 @@ public class PersonRefBeispiel {
             }
 
             System.out.println("         ***************         ");
-            // remove strong reference
+            // Starke Referenz entfernt
             person = null;
             
-            // at this point, Object is only phantom referenced
+            // Ab jetzt ist nur noch die Phantom Referenz vorhanden
             System.gc();
             
             System.out.println("GC aufgerufen, als nur noch PHANTOM Referenz vorhanden");
@@ -38,7 +43,7 @@ public class PersonRefBeispiel {
             }else {
                 System.out.println("Objekt ist tot");
                 
-                // Do the cleanup as required
+                // Cleanup wo erforderlich
             }            
         } catch (Exception e) {
             e.printStackTrace();
