@@ -6,7 +6,8 @@ public class MeinFileReader {
 	private BufferedReader reader;
 
 	public MeinFileReader() throws FileNotFoundException {
-		final InputStream input = new FileInputStream("C:\\Temp\\useragents.txt");
+		final InputStream input = new FileInputStream("C:\\Temp\\grosseDatei.txt");
+		// TODO hier andere Datei
 		this.reader = new BufferedReader(new InputStreamReader(input));
 	}
 

@@ -21,7 +21,7 @@ public class PhantomReferenceGCAufrufBeispiel {
             // Aufruf des GC als wir noch Starke und Phantom Referenzeen haben
             System.gc();
             
-            System.out.println("GC aufgerufen, als noch starke Referenz vorhanden");
+            System.out.println("System.gc() aufgerufen, als noch starke Referenz vorhanden");
             Reference<? extends Person> ref = queue.poll();
             if (ref == null) {
                 System.out.println("Objekt ist noch am Leben");
@@ -36,7 +36,7 @@ public class PhantomReferenceGCAufrufBeispiel {
             // Ab jetzt ist nur noch die Phantom Referenz vorhanden
             System.gc();
             
-            System.out.println("GC aufgerufen, als nur noch PHANTOM Referenz vorhanden");
+            System.out.println("System.gc() aufgerufen, als nur noch PHANTOM Referenz vorhanden");
             ref = queue.poll();
             if(ref == null) {
                 System.out.println("Objekt ist noch am Leben");
