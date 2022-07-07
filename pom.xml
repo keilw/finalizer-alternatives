@@ -249,5 +249,6 @@
 		<module>finalize</module>
 		<module>cleaner</module>
 		<module>phantom</module>
+		<module>trycatch</module>
 	</modules>
 </project>
