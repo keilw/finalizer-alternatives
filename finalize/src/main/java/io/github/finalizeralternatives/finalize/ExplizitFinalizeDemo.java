@@ -4,7 +4,8 @@ public class ExplizitFinalizeDemo
 {
     public static void main(String[] args) 
     {
-        ExplizitFinalizeDemo demo1 = new ExplizitFinalizeDemo();
+        @SuppressWarnings("unused")
+		ExplizitFinalizeDemo demo1 = new ExplizitFinalizeDemo();
         ExplizitFinalizeDemo demo2 = new ExplizitFinalizeDemo();
         demo1 = null;
         demo2.finalize(); // Explicit call to finalize method
